@@ -266,10 +266,8 @@ function wpseo_init() {
 	WPSEO_Options::get_instance();
 	WPSEO_Meta::init();
 
-	if ( version_compare( WPSEO_Options::get( 'version', 1 ), WPSEO_VERSION, '<' ) ) {
-		new WPSEO_Upgrade();
-		// Get a cleaned up version of the $options.
-	}
+	$wpseo_upgrade = new WPSEO_Upgrade();
+	$wpseo_upgrade->run();
 
 	if ( WPSEO_Options::get( 'stripcategorybase' ) === true ) {
 		$GLOBALS['wpseo_rewrite'] = new WPSEO_Rewrite();

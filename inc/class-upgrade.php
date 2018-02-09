@@ -8,11 +8,30 @@
  * This code handles the option upgrades
  */
 class WPSEO_Upgrade {
+	/** @var string Version to compare. */
+	protected $version;
+
+	/** @var array Options present before upgrading. */
+	protected $options_before_upgrade;
+
 	/**
 	 * Class constructor
 	 */
 	public function __construct() {
-		$version = WPSEO_Options::get( 'version' );
+		$this->version = WPSEO_Options::get( 'version' );
+	}
+
+	/**
+	 * Runs the upgrades.
+	 */
+	public function run() {
+		if ( ! $this->requires_upgrade() ) {
+			return;
+		}
+
+		$version = $this->get_version();
+
+		$this->before_upgrade();
 
 		WPSEO_Options::maybe_set_multisite_defaults( false );
 
@@ -106,6 +125,93 @@ class WPSEO_Upgrade {
 		do_action( 'wpseo_run_upgrade', $version );
 
 		$this->finish_up();
+
+		$this->after_upgrade();
+	}
+
+	/**
+	 * Retrieves the version to use.
+	 *
+	 * @return WPSEO_Upgrade_Version_Range Version to use.
+	 */
+	protected function get_version() {
+		return $this->version;
+	}
+
+	/**
+	 * Collects the values of all WPSEO options in the database.
+	 *
+	 * @return array List of options and their values.
+	 */
+	public function collect_options() {
+		global $wpdb;
+
+		// Get all options, excluding the sitemap cache validators.
+		$options = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT option_name FROM ' . $wpdb->options . ' WHERE option_name LIKE %s AND option_name NOT LIKE %s',
+				'wpseo_%',
+				'wpseo_sitemap%'
+			),
+			ARRAY_N
+		);
+
+		$option_keys = array_column( $options, 0 );
+
+		$options = array();
+		foreach ($option_keys as $option_key ) {
+			$option_value = get_option( $option_key, null );
+			if ( null === $option_value ) {
+				continue;
+			}
+
+			$options[ $option_key ] = $option_value;
+		}
+
+		return $options;
+	}
+
+	/**
+	 * Handles pre-upgrade actions.
+	 *
+	 * @return void
+	 */
+	protected function before_upgrade() {
+		// Collect the current values of all options.
+		$this->options_before_upgrade = $this->collect_options();
+	}
+
+	/**
+	 * Handles post-upgrade actions.
+	 *
+	 * @return void
+	 */
+	protected function after_upgrade() {
+		// Collect the current values of all options.
+		$options = $this->collect_options();
+
+		// Determine if there are any changes in the options.
+		$changed_options = array_diff_assoc( $this->options_before_upgrade, $options );
+		if ( empty( $changed_options ) ) {
+			$changed_options = array_diff_assoc( $options, $this->options_before_upgrade );
+		}
+
+		// No changes detected in options.
+		if ( empty( $changed_options ) ) {
+			return;
+		}
+
+		// Store the previous and current states of all options.
+		// Do not autoload this option!
+		// @todo should we only store the changed options or everything...?
+		update_option(
+			sprintf( 'wpseo-upgrade-options_%s-%s', $this->get_version(), WPSEO_VERSION ),
+			array(
+				'before' => $this->options_before_upgrade,
+				'after'  => $options
+			),
+			false
+		);
 	}
 
 	/**
@@ -513,5 +619,14 @@ class WPSEO_Upgrade {
 		// Moves the user meta for excluding from the XML sitemap to a noindex.
 		global $wpdb;
 		$wpdb->query( "UPDATE $wpdb->usermeta SET meta_key = 'wpseo_noindex_author' WHERE meta_key = 'wpseo_excludeauthorsitemap'" );
+	}
+
+	/**
+	 * Determines if there should be an upgrade.
+	 *
+	 * @return bool True if an upgrade needs to be done.
+	 */
+	protected function requires_upgrade() {
+		return version_compare( WPSEO_Options::get( 'version', 1 ), WPSEO_VERSION, '<' );
 	}
 }
