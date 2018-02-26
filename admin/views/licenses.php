@@ -148,6 +148,7 @@ $wpseo_extensions_header = sprintf( __( '%1$s Extensions', 'wordpress-seo' ), 'Y
 			<?php
 			$extension = $extensions->get( 'wordpress-seo-premium' );
 			$extensions->remove( 'wordpress-seo-premium' );
+			if ( ! $extensions->is_activated( 'wordpress-seo-premium' ) ) :
 			?>
 			<h2>
 				<?php
@@ -177,7 +178,7 @@ $wpseo_extensions_header = sprintf( __( '%1$s Extensions', 'wordpress-seo' ), 'Y
 					<span class="yoast-seo-premium-benefits__description"><?php esc_html_e( 'gain access to our 24/7 support team.', 'wordpress-seo' ); ?></span>
 				</li>
 			</ul>
-
+			<?php endif; ?>
 			<?php if ( $extension_list->is_installed( $extension->get_title() ) ) : ?>
 				<div class="yoast-button yoast-button--noarrow yoast-button--extension yoast-button--extension-installed"><?php esc_html_e( 'Installed', 'wordpress-seo' ); ?></div>
 
@@ -207,8 +208,9 @@ $wpseo_extensions_header = sprintf( __( '%1$s Extensions', 'wordpress-seo' ), 'Y
 						$extension->get_title() );
 					?></a>
 			<?php endif; ?>
-
+			<?php if ( ! $extensions->is_activated( 'wordpress-seo-premium' ) ) { ?>
 			<p><small class="yoast-money-back-guarantee"><?php esc_html_e( 'Comes with our 30-day no questions asked money back guarantee', 'wordpress-seo' ); ?></small></p>
+			<?php } ?>
 		</section>
 
 		<hr class="yoast-hr" aria-hidden="true" />
