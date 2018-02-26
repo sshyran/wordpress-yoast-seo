@@ -482,38 +482,42 @@ ul.wpseo-metabox-tabs li.wpseo-tab-add-keyword {
 /**
 * Content and SEO score in publish bar
 */
-.yoast-seo-score .yoast-logo.svg {
-	float: left;
-	width: 18px;
-	margin-right: 5px;
-	height: 18px;
-	background: url(svg-icon-yoast(#999)) no-repeat;
-	background-size: 18px;
-}
+.yoast-seo-score {
+	.score-text {
+		a strong {
+			font-weight: normal;
+		}
+	}
 
-.yoast-seo-score .yoast-logo.svg.good {
-	$color: #7ad03a;
-	background-image: url(svg-icon-yoast($color));
-}
+	.yoast-logo.svg {
+		float: left;
+		width: 18px;
+		margin-right: 5px;
+		height: 18px;
+		background: url(svg-icon-yoast(#999)) no-repeat;
+		background-size: 18px;
 
-.yoast-seo-score .yoast-logo.svg.ok {
-	$color: #ee7c1b;
-	background-image: url(svg-icon-yoast($color));
-}
-
-.yoast-seo-score .yoast-logo.svg.bad {
-	$color: #dc3232;
-	background-image: url(svg-icon-yoast($color));
-}
-
-.yoast-seo-score .yoast-logo.svg.na {
-	$color: #999;
-	background-image: url(svg-icon-yoast($color));
-}
-
-.yoast-seo-score .yoast-logo.svg.noindex {
-	$color: #1e8cbe;
-	background-image: url(svg-icon-yoast($color));
+		&.good {
+			$color: #7ad03a;
+			background-image: url(svg-icon-yoast($color));
+		}
+		&.ok {
+			$color: #ee7c1b;
+			background-image: url(svg-icon-yoast($color));
+		}
+		&.bad {
+			$color: #dc3232;
+			background-image: url(svg-icon-yoast($color));
+		}
+		&.na {
+			$color: #999;
+			background-image: url(svg-icon-yoast($color));
+		}
+		&.noindex {
+			$color: #1e8cbe;
+			background-image: url(svg-icon-yoast($color));
+		}
+	}
 }
 
 // Fix for the Taxonomy metabox heading: get just the first level h2.

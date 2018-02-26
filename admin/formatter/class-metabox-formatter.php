@@ -74,52 +74,52 @@ class WPSEO_Metabox_Formatter {
 						'na'   => sprintf(
 							/* translators: %1$s expands to an opening strong tag, %2$s expands to a closing strong tag. */
 							__( 'Readability: %1$sNot available%2$s', 'wordpress-seo' ),
-							'<strong>',
-							'</strong>'
+							'<a href="#wpseo_meta"><strong>',
+							'</strong></a>'
 						),
 						'bad'  => sprintf(
 							/* translators: %1$s expands to an opening strong tag, %2$s expands to a closing strong tag. */
 							__( 'Readability: %1$sNeeds improvement%2$s', 'wordpress-seo' ),
-							'<strong>',
-							'</strong>'
+							'<a href="#wpseo_meta"><strong>',
+							'</strong></a>'
 						),
 						'ok'   => sprintf(
 							/* translators: %1$s expands to an opening strong tag, %2$s expands to a closing strong tag. */
 							__( 'Readability: %1$sOK%2$s', 'wordpress-seo' ),
-							'<strong>',
-							'</strong>'
+							'<a href="#wpseo_meta"><strong>',
+							'</strong></a>'
 						),
 						'good' => sprintf(
 							/* translators: %1$s expands to an opening strong tag, %2$s expands to a closing strong tag. */
 							__( 'Readability: %1$sGood%2$s', 'wordpress-seo' ),
-							'<strong>',
-							'</strong>'
+							'<a href="#wpseo_meta"><strong>',
+							'</strong></a>'
 						),
 					),
 					'keyword' => array(
 						'na'   => sprintf(
 							/* translators: %1$s expands to an opening strong tag, %2$s expands to a closing strong tag. */
 							__( 'SEO: %1$sNot available%2$s', 'wordpress-seo' ),
-							'<strong>',
-							'</strong>'
+							'<a href="#wpseo_meta"><strong>',
+							'</strong></a>'
 						),
 						'bad'  => sprintf(
 							/* translators: %1$s expands to an opening strong tag, %2$s expands to a closing strong tag. */
 							__( 'SEO: %1$sNeeds improvement%2$s', 'wordpress-seo' ),
-							'<strong>',
-							'</strong>'
+							'<a href="#wpseo_meta"><strong>',
+							'</strong></a>'
 						),
 						'ok'   => sprintf(
 							/* translators: %1$s expands to an opening strong tag, %2$s expands to a closing strong tag. */
 							__( 'SEO: %1$sOK%2$s', 'wordpress-seo' ),
-							'<strong>',
-							'</strong>'
+							'<a href="#wpseo_meta"><strong>',
+							'</strong></a>'
 						),
 						'good' => sprintf(
 							/* translators: %1$s expands to an opening strong tag, %2$s expands to a closing strong tag. */
 							__( 'SEO: %1$sGood%2$s', 'wordpress-seo' ),
-							'<strong>',
-							'</strong>'
+							'<a href="#wpseo_meta"><strong>',
+							'</strong></a>'
 						),
 					),
 				),
