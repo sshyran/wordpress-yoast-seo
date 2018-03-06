@@ -385,7 +385,7 @@ SVG;
 						<span class="screen-reader-text wpseo-generic-tab-textual-score">{{data.scoreText}}</span>
 					</a>
 					<# if ( data.hideable ) { #>
-						<button type="button" class="remove-tab" aria-label="{{data.removeLabel}}"><span>x</span></button>
+						<button type="button" class="remove-tab" aria-label="{{data.removeLabel}}"><span class="dashicons dashicons-no-alt"></span></button>
 					<# } #>
 				</li>
 			</script>';
@@ -409,7 +409,7 @@ SVG;
 						<span class="screen-reader-text wpseo-keyword-tab-textual-score">{{data.scoreText}}</span>
 					</a>
 					<# if ( data.hideable ) { #>
-						<button type="button" class="remove-keyword" aria-label="{{data.removeLabel}}"><span>x</span></button>
+						<button type="button" class="remove-keyword" aria-label="{{data.removeLabel}}"><span class="dashicons dashicons-no-alt"></span></button>
 					<# } #>
 				</li>
 			</script>';
