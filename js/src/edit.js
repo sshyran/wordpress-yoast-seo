@@ -1,4 +1,4 @@
-/* global window wpseoPostScraperL10n wpseoTermScraperL10n process */
+/* global window wpseoPostScraperL10n wpseoTermScraperL10n process wp */
 
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
@@ -120,6 +120,40 @@ export function initialize( args ) {
 	const store = configureStore();
 
 	renderReactApps( store, args );
+
+	const AnderComponent = ( { namespacedName } ) => {
+		return (
+			<p>{ namespacedName }</p>
+		);
+	};
+
+	if( wp.editPost ) {
+		const {
+			registerPlugin,
+			PluginSidebar,
+		} = wp.editPost;
+		const {
+			Fragment
+		} = wp.element;
+
+		const Component = () => {
+			return (
+				<Fragment>
+					<PluginSidebar name="readability" title="Readability Analysis">
+						<AnderComponent />
+					</PluginSidebar>
+					<PluginSidebar name="seo" title="Seo Analysis">
+						<AnderComponent />
+					</PluginSidebar>
+				</Fragment>
+			);
+		};
+
+		registerPlugin( {
+			name: "yoast",
+			render: Component,
+		} );
+	}
 
 	return {
 		store,
