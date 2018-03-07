@@ -127,6 +127,10 @@ export function initialize( args ) {
 		);
 	};
 
+	const ErrorComponent = () => {
+		throw "Nope;";
+	}
+
 	if( wp.editPost ) {
 		const {
 			registerPlugin,
@@ -143,7 +147,7 @@ export function initialize( args ) {
 						<AnderComponent />
 					</PluginSidebar>
 					<PluginSidebar name="seo" title="Seo Analysis">
-						<AnderComponent />
+						<ErrorComponent />
 					</PluginSidebar>
 				</Fragment>
 			);
