@@ -103,7 +103,7 @@
     "redux-thunk": "^2.2.0",
     "select2": "^4.0.5",
     "yoast-components": "^3.1.0",
-    "yoastseo": "^1.30"
+    "yoastseo": "git+https://github.com/Yoast/YoastSEO.js.git#stories/1429-participle-precedence-exception-not-working"
   },
   "yoast": {
     "pluginVersion": "7.0.1"
