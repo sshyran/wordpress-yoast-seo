@@ -135,7 +135,7 @@ export function initialize( args ) {
 		const {
 			registerPlugin,
 			PluginSidebar,
-		} = wp.editPost;
+		} = wp.editPost.__experimental;
 		const {
 			Fragment
 		} = wp.element;
@@ -153,8 +153,7 @@ export function initialize( args ) {
 			);
 		};
 
-		registerPlugin( {
-			name: "yoast",
+		registerPlugin( "yoast", {
 			render: Component,
 		} );
 	}
