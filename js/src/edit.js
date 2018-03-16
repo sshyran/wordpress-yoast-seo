@@ -121,9 +121,9 @@ export function initialize( args ) {
 
 	renderReactApps( store, args );
 
-	const AnderComponent = ( { namespacedName } ) => {
+	const AnderComponent = ( props ) => {
 		return (
-			<p>{ namespacedName }</p>
+			<p>{ JSON.stringify( props ) }</p>
 		);
 	};
 
@@ -132,8 +132,11 @@ export function initialize( args ) {
 	}
 
 	if( wp.editPost ) {
+		debugger;
 		const {
 			registerPlugin,
+		} = wp.plugins;
+		const {
 			PluginSidebar,
 		} = wp.editPost.__experimental;
 		const {
@@ -146,8 +149,11 @@ export function initialize( args ) {
 					<PluginSidebar name="readability" title="Readability Analysis">
 						<AnderComponent />
 					</PluginSidebar>
-					<PluginSidebar name="seo" title="Seo Analysis">
+					<PluginSidebar name="error" title="Seo Analysis">
 						<ErrorComponent />
+					</PluginSidebar>
+					<PluginSidebar name="readability" title="Seo Analysis">
+						Text
 					</PluginSidebar>
 				</Fragment>
 			);
