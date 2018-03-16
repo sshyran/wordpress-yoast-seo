@@ -132,7 +132,6 @@ export function initialize( args ) {
 	}
 
 	if( wp.editPost ) {
-		debugger;
 		const {
 			registerPlugin,
 		} = wp.plugins;
