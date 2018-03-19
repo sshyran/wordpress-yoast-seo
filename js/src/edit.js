@@ -132,12 +132,12 @@ export function initialize( args ) {
 	}
 
 	if( wp.editPost ) {
-		debugger;
 		const {
 			registerPlugin,
 		} = wp.plugins;
 		const {
 			PluginSidebar,
+			PluginMoreMenuItem,
 		} = wp.editPost.__experimental;
 		const {
 			Fragment
@@ -149,12 +149,7 @@ export function initialize( args ) {
 					<PluginSidebar name="readability" title="Readability Analysis">
 						<AnderComponent />
 					</PluginSidebar>
-					<PluginSidebar name="error" title="Seo Analysis">
-						<ErrorComponent />
-					</PluginSidebar>
-					<PluginSidebar name="readability" title="Seo Analysis">
-						Text
-					</PluginSidebar>
+					<PluginMoreMenuItem name="readability-more-menu-item" title="Test" target="readability" type="sidebar"/>
 				</Fragment>
 			);
 		};
