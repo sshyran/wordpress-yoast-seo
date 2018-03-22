@@ -121,11 +121,7 @@ export function initialize( args ) {
 
 	renderReactApps( store, args );
 
-	const AnderComponent = ( props ) => {
-		return (
-			<p>{ JSON.stringify( props ) }</p>
-		);
-	};
+
 
 	const ErrorComponent = () => {
 		throw "Nope;";
@@ -142,19 +138,43 @@ export function initialize( args ) {
 		const {
 			Fragment
 		} = wp.element;
+		const {
+			dispatch,
+		} = wp.data;
+
+		const Icon = (
+			<svg width="100%" height="100%" viewBox="0 0 100 100">
+				<circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" fill="red" />
+			</svg>
+		);
+
+		const SidebarContents = ( props ) => {
+			const onClose = dispatch( "core/edit-post" ).closeGeneralSidebar;
+			return (
+				<div>
+					<p>Here is the sidebar content!</p>
+					<button onClick={ onClose }>Close</button>
+				</div>
+			);
+		};
 
 		const Component = () => {
 			return (
 				<Fragment>
-					<PluginSidebar name="readability" title="Readability Analysis">
-						<AnderComponent />
+					<PluginSidebar name="my-sidebar" title="My sidebar">
+						<SidebarContents />
 					</PluginSidebar>
-					<PluginMoreMenuItem name="readability-more-menu-item" title="Test" target="readability" type="sidebar"/>
+					<PluginMoreMenuItem
+						name="more-menu-item"
+						title="My sidebar"
+						icon={ Icon }
+						target="my-sidebar"
+						type="sidebar"/>
 				</Fragment>
 			);
 		};
 
-		registerPlugin( "yoast", {
+		registerPlugin( "my-plugin", {
 			render: Component,
 		} );
 	}
