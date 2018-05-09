@@ -45,6 +45,17 @@ class WPSEO_Content_Images implements WPSEO_WordPress_Integration {
 	 * @return array An array of images found in this post.
 	 */
 	public function get_images( $post_id, $post = null ) {
+		/**
+		 * Filter: 'wpseo_opengraph_detect_images_in_content' - Allow avoiding scraping of the content for image to use.
+		 *
+		 * This is a fallback when Feature image or specific Facebook or Twitter images are not set.
+		 *
+		 * @api boolean True to allow scraping of the content for images, False to disable.
+		 */
+		if ( true !== apply_filters( 'wpseo_opengraph_detect_images_in_content', true ) ) {
+			return array();
+		}
+
 		$post_image_cache = $this->get_cached_images( $post_id );
 		if ( is_array( $post_image_cache ) ) {
 			return $post_image_cache;

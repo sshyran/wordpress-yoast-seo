@@ -595,6 +595,17 @@ class WPSEO_Twitter {
 	 */
 	private function image_from_content_output( $post_id ) {
 		/**
+		 * Filter: 'wpseo_opengraph_detect_images_in_content' - Allow avoiding scraping of the content for image to use.
+		 *
+		 * This is a fallback when Feature image or specific Facebook or Twitter images are not set.
+		 *
+		 * @api boolean True to allow scraping of the content for images, False to disable.
+		 */
+		if ( true !== apply_filters( 'wpseo_opengraph_detect_images_in_content', true ) ) {
+			return false;
+		}
+
+		/**
 		 * Filter: 'wpseo_pre_analysis_post_content' - Allow filtering the content before analysis
 		 *
 		 * @api string $post_content The Post content string
