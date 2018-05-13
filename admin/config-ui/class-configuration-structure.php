@@ -40,6 +40,7 @@ class WPSEO_Configuration_Structure {
 			'profileUrlPinterest',
 			'profileUrlYouTube',
 			'profileUrlGooglePlus',
+			'profileUrlVK',
 		) );
 
 		$fields = array( 'postTypeVisibility' );

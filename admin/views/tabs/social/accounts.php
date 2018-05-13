@@ -34,5 +34,6 @@ $yform->textinput( 'myspace_url', __( 'MySpace URL', 'wordpress-seo' ) );
 $yform->textinput( 'pinterest_url', __( 'Pinterest URL', 'wordpress-seo' ) );
 $yform->textinput( 'youtube_url', __( 'YouTube URL', 'wordpress-seo' ) );
 $yform->textinput( 'google_plus_url', __( 'Google+ URL', 'wordpress-seo' ) );
+$yform->textinput( 'vk_url', __( 'VK Page URL', 'wordpress-seo' ) );
 
 do_action( 'wpseo_admin_other_section' );

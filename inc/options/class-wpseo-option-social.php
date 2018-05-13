@@ -38,6 +38,7 @@ class WPSEO_Option_Social extends WPSEO_Option {
 		'twitter_card_type'  => 'summary_large_image',
 		'youtube_url'        => '',
 		'google_plus_url'    => '',
+		'vk_url'             => '',
 		// Form field, but not always available.
 		'fbadminapp'         => '', // Facebook app ID.
 	);
@@ -127,6 +128,7 @@ class WPSEO_Option_Social extends WPSEO_Option {
 				case 'og_frontpage_image':
 				case 'youtube_url':
 				case 'google_plus_url':
+				case 'vk_url':
 					$this->validate_url( $key, $dirty, $old, $clean );
 					break;
 

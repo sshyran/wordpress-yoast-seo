@@ -174,6 +174,7 @@ class WPSEO_JSON_LD implements WPSEO_WordPress_Integration {
 			'myspace_url',
 			'youtube_url',
 			'pinterest_url',
+			'vk_url',
 		);
 		foreach ( $social_profiles as $profile ) {
 			if ( WPSEO_Options::get( $profile, '' ) !== '' ) {
