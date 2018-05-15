@@ -464,6 +464,7 @@ import { updateData } from "./redux/actions/snippetEditor";
 			snippetEditorDate: wpseoPostScraperL10n.metaDescriptionDate,
 			replaceVars: wpseoReplaceVarsL10n.replace_vars,
 		};
+
 		const { store, data } = initializeEdit( editArgs );
 		editStore = store;
 
@@ -479,7 +480,7 @@ import { updateData } from "./redux/actions/snippetEditor";
 		publishBox.initalise();
 
 		// Initialize the snippet editor data.
-		let snippetEditorData = snippetEditorHelpers.getDataFromCollector( postDataCollector );
+		let snippetEditorData = snippetEditorHelpers.getSnippetEditorDataFromCollector( postDataCollector );
 		const snippetEditorTemplates = snippetEditorHelpers.getTemplatesFromL10n( wpseoPostScraperL10n );
 		snippetEditorData = snippetEditorHelpers.getDataWithTemplates( snippetEditorData, snippetEditorTemplates );
 

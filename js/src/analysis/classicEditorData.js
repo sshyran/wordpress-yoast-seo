@@ -5,7 +5,6 @@ import removeMarks from "yoastseo/js/markers/removeMarks";
 import { updateReplacementVariable } from "../redux/actions/snippetEditor";
 import updateReplacementVariables from "../helpers/updateReplacementVariables";
 import tmceHelper, { tmceId } from "../wp-seo-tinymce";
-import PostDataCollector from "./PostDataCollector";
 
 /**
  * Represents the classic editor data.
@@ -78,7 +77,7 @@ class ClassicEditorData {
 	}
 
 	getPrimaryCategory() {
-		let primaryTerm = "";
+		let primaryTermElement;
 		let categoryBase = document.getElementById( "categorychecklist" );
 		let terms = categoryBase.querySelectorAll( "input" );
 
@@ -92,16 +91,16 @@ class ClassicEditorData {
 
 		// If only one term is checked then that term is the primary category.
 		if ( checkedTerms.length === 1 ) {
-			primaryTerm = checkedTerms[0].labels[0].innerText;
+			primaryTermElement = checkedTerms[0].labels[0];
 		}
 
 		// If multiple terms are checked, look for the wpseo-primary-term class.
 		if ( checkedTerms.length > 1 ) {
 			let primaryElement = categoryBase.querySelectorAll( ".wpseo-primary-term" );
-			primaryTerm = primaryElement[0].children[0].innerText;
+			primaryTermElement = primaryElement[0].children[0];
 		}
 
-		return primaryTerm;
+		return primaryTermElement && primaryTermElement.innerText;
 	};
 
 	/**
@@ -119,6 +118,7 @@ class ClassicEditorData {
 	 * @returns {void}
 	 */
 	subscribeToElements() {
+		// Input subscriptions
 		this.subscribeToInputElement( "title", "title" );
 		this.subscribeToInputElement( "excerpt", "excerpt" );
 	}

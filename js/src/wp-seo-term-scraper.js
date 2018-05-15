@@ -276,7 +276,7 @@ window.yoastHideMarkers = true;
 		termScraper = new TermDataCollector( { tabManager } );
 
 		// Initialize the snippet editor data.
-		let snippetEditorData = snippetEditorHelpers.getDataFromCollector( termScraper );
+		let snippetEditorData = snippetEditorHelpers.getSnippetEditorDataFromCollector( termScraper );
 		const snippetEditorTemplates = snippetEditorHelpers.getTemplatesFromL10n( wpseoTermScraperL10n );
 		snippetEditorData = snippetEditorHelpers.getDataWithTemplates( snippetEditorData, snippetEditorTemplates );
 

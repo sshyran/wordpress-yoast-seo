@@ -10,7 +10,7 @@ import isUndefined from "lodash/isUndefined";
  *
  * @returns {Object} The snippet editor data object.
  */
-function getDataFromCollector( collector ) {
+function getSnippetEditorDataFromCollector( collector ) {
 	return {
 		title: collector.getSnippetTitle(),
 		slug: collector.getSnippetCite(),
@@ -104,7 +104,7 @@ function getDataWithoutTemplates( data, templates ) {
 }
 
 export default {
-	getDataFromCollector,
+	getSnippetEditorDataFromCollector,
 	getDataFromStore,
 	getTemplatesFromL10n,
 	getDataWithTemplates,
