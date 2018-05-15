@@ -5,6 +5,7 @@ import removeMarks from "yoastseo/js/markers/removeMarks";
 import { updateReplacementVariable } from "../redux/actions/snippetEditor";
 import updateReplacementVariables from "../helpers/updateReplacementVariables";
 import tmceHelper, { tmceId } from "../wp-seo-tinymce";
+import PostDataCollector from "./PostDataCollector";
 
 /**
  * Represents the classic editor data.
@@ -75,6 +76,33 @@ class ClassicEditorData {
 
 		return slug;
 	}
+
+	getPrimaryCategory() {
+		let primaryTerm = "";
+		let categoryBase = document.getElementById( "categorychecklist" );
+		let terms = categoryBase.querySelectorAll( "input" );
+
+		// Get all checked terms in the category list.
+		let checkedTerms = [];
+		terms.forEach( ( checkbox ) => {
+			if( checkbox.checked ) {
+				checkedTerms.push( checkbox );
+			}
+		} );
+
+		// If only one term is checked then that term is the primary category.
+		if ( checkedTerms.length === 1 ) {
+			primaryTerm = checkedTerms[0].labels[0].innerText;
+		}
+
+		// If multiple terms are checked, look for the wpseo-primary-term class.
+		if ( checkedTerms.length > 1 ) {
+			let primaryElement = categoryBase.querySelectorAll( ".wpseo-primary-term" );
+			primaryTerm = primaryElement[0].children[0].innerText;
+		}
+
+		return primaryTerm;
+	};
 
 	/**
 	 * Gets the content of the document after removing marks.
@@ -147,6 +175,7 @@ class ClassicEditorData {
 			excerpt: this.getExcerpt(),
 			slug: this.getSlug(),
 			content: this.getContent(),
+			primary_category: this.getPrimaryCategory(),
 		};
 	}
 
