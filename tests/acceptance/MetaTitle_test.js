@@ -2,8 +2,14 @@ Feature( "In order to configure Post custom Title in meta settings\n" +
 	"As an Yoast SEO user\n" +
 	"I need to change SEO title/Facebook title/Twitter title" );
 
-Before( ( wpAdmin ) => {
+Before( ( I, post, wpAdmin ) => {
 	wpAdmin.loginWPAdmin();
+	wpAdmin.editGeneralSettings();
+	I.fillField( "blogname", "Local WordPress Dev" );
+	I.scrollTo( { id: "submit" } );
+	I.click( { id: "submit" } );
+	post.openPost1();
+	I.seeInSource( "meta property=\"og:site_name\" content=\"Local WordPress Dev\"" );
 } );
 
 Scenario( 'Given SEO title is set to default value in Content optimization tab - "Edit Snippet" of my Post\n' +
@@ -28,9 +34,9 @@ Scenario( 'Given SEO title is set to default value in Content optimization tab -
 		I.scrollTo( { id: "submitdiv" } );
 		I.click( { id: "publish" } );
 		post.openPost1();
-		I.seeInSource( "<title>Hello world! - Local WordPress Dev</title>" );
-		I.seeInSource( "meta property=\"og:title\" content=\"Hello world! - Local WordPress Dev\"" );
-		I.seeInSource( "meta name=\"twitter:title\" content=\"Hello world! - Local WordPress Dev\"" );
+		I.seeInSource( "<title>Mypost - Local WordPress Dev</title>" );
+		I.seeInSource( "meta property=\"og:title\" content=\"Mypost - Local WordPress Dev\"" );
+		I.seeInSource( "meta name=\"twitter:title\" content=\"Mypost - Local WordPress Dev\"" );
 
 
 		wpAdmin.editPost1();
@@ -63,8 +69,8 @@ Scenario( 'Given SEO title is set to default value in Content optimization tab -
 		I.scrollTo( { id: "submitdiv" } );
 		I.click( { id: "publish" } );
 		post.openPost1();
-		I.seeInSource( "<title>Hello world! - Local WordPress Dev</title>" );
-		I.seeInSource( "meta property=\"og:title\" content=\"Hello world! - Local WordPress Dev\"" );
+		I.seeInSource( "<title>Mypost - Local WordPress Dev</title>" );
+		I.seeInSource( "meta property=\"og:title\" content=\"Mypost - Local WordPress Dev\"" );
 
 		wpAdmin.editPost1();
 		I.click( 'a[href="#wpseo-meta-section-social"]' );
@@ -95,8 +101,8 @@ Scenario( 'Given SEO title is set to default value in Content optimization tab -
 		I.scrollTo( { id: "submitdiv" } );
 		I.click( { id: "publish" } );
 		post.openPost1();
-		I.seeInSource( "<title>Hello world! - Local WordPress Dev</title>" );
-		I.seeInSource( "meta name=\"twitter:title\" content=\"Hello world! - Local WordPress Dev\"" );
+		I.seeInSource( "<title>Mypost - Local WordPress Dev</title>" );
+		I.seeInSource( "meta name=\"twitter:title\" content=\"Mypost - Local WordPress Dev\"" );
 
 		wpAdmin.editPost1();
 		I.click( 'a[href="#wpseo-meta-section-social"]' );
