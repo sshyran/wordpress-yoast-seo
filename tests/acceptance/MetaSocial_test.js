@@ -38,8 +38,8 @@ Scenario( 'Given Image URL is empty in "SEO" - "Social" Facebook page\n' +
 	'And click "Save changes"\n' +
 	"Then meta settings of my Post contain:\n" +
 	'meta property="og:image" content=<link_to_pic>\n' +
-	'meta property="og:image:width" content=<pic_width>\n' +
-	'meta property="og:image:height" content=<pic_height>',
+	// 'meta property="og:image:width" content=<pic_width>\n' +
+	// 'meta property="og:image:height" content=<pic_height>',
 	async ( I, post, wpAdmin ) => {
 		wpAdmin.editSeoSocialFacebook();
 		I.fillField( { id: "wpseo_og_default_image" }, "" );
@@ -75,8 +75,8 @@ Scenario( 'Given Image URL is empty in "SEO" - "Social" Facebook page\n' +
 	'And click "Update"\n' +
 	"Then meta settings of my Post contain:\n" +
 	'meta property="og:image" content=<link_to_pic>\n' +
-	'meta property="og:image:width" content=<pic_width>\n' +
-	'meta property="og:image:height" content=<pic_height>',
+	// 'meta property="og:image:width" content=<pic_width>\n' +
+	// 'meta property="og:image:height" content=<pic_height>',
 	async ( I, post, wpAdmin ) => {
 		wpAdmin.editSeoSocialFacebook();
 		I.fillField( { id: "wpseo_og_default_image" }, "" );
@@ -113,8 +113,8 @@ Scenario( 'Given Image URL is empty in "SEO" - "Social" Facebook page\n' +
 	'And click "Update"\n' +
 	"Then meta settings of my Post contain:\n" +
 	'meta property="og:image" content=<link_to_pic>\n' +
-	'meta property="og:image:width" content=<pic_width>\n' +
-	'meta property="og:image:height" content=<pic_height>',
+	// 'meta property="og:image:width" content=<pic_width>\n' +
+	// 'meta property="og:image:height" content=<pic_height>',
 	async ( I, post, wpAdmin ) => {
 		wpAdmin.editSeoSocialFacebook();
 		I.fillField( { id: "wpseo_og_default_image" }, "" );
