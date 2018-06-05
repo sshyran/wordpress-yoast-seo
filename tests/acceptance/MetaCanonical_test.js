@@ -43,6 +43,7 @@ Scenario( 'Given "Allow search engines to show this Post in search results?" is 
 		I.scrollTo( { id: "submitdiv" } );
 		I.click( { id: "publish" } );
 
+		wpAdmin.editPost2();
 		I.click( "Advanced" );
 		I.fillField( "yoast_wpseo_canonical", "http://local.wordpress.test/mypost/" );
 		I.scrollTo( { id: "submitdiv" } );
@@ -67,6 +68,7 @@ Scenario( "Given Canonical URL is configured with http://local.wordpress.test/my
 		I.scrollTo( { id: "submitdiv" } );
 		I.click( { id: "publish" } );
 
+		wpAdmin.editPost2();
 		I.click( "Advanced" );
 		I.selectOption( "#yoast_wpseo_meta-robots-noindex", "No" );
 		I.scrollTo( { id: "submitdiv" } );
