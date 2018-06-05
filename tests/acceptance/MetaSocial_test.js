@@ -37,7 +37,7 @@ Scenario( 'Given Image URL is empty in "SEO" - "Social" Facebook page\n' +
 	"When I upload image to Image URL in \"SEO\" - \"Social\" Facebook page\n" +
 	'And click "Save changes"\n' +
 	"Then meta settings of my Post contain:\n" +
-	'meta property="og:image" content=<link_to_pic>\n' +
+	'meta property="og:image" content=<link_to_pic>\n',
 	// 'meta property="og:image:width" content=<pic_width>\n' +
 	// 'meta property="og:image:height" content=<pic_height>',
 	async ( I, post, wpAdmin ) => {
@@ -74,7 +74,7 @@ Scenario( 'Given Image URL is empty in "SEO" - "Social" Facebook page\n' +
 	"When I upload image to Facebook image in Social - Facebook page of my Post\n" +
 	'And click "Update"\n' +
 	"Then meta settings of my Post contain:\n" +
-	'meta property="og:image" content=<link_to_pic>\n' +
+	'meta property="og:image" content=<link_to_pic>\n',
 	// 'meta property="og:image:width" content=<pic_width>\n' +
 	// 'meta property="og:image:height" content=<pic_height>',
 	async ( I, post, wpAdmin ) => {
@@ -112,7 +112,7 @@ Scenario( 'Given Image URL is empty in "SEO" - "Social" Facebook page\n' +
 	"When I upload image to the content of My Post\n" +
 	'And click "Update"\n' +
 	"Then meta settings of my Post contain:\n" +
-	'meta property="og:image" content=<link_to_pic>\n' +
+	'meta property="og:image" content=<link_to_pic>\n',
 	// 'meta property="og:image:width" content=<pic_width>\n' +
 	// 'meta property="og:image:height" content=<pic_height>',
 	async ( I, post, wpAdmin ) => {
