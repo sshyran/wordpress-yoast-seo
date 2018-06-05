@@ -114,3 +114,4 @@ Scenario( 'Given SEO title is set to default value in Content optimization tab -
 		post.openPost1();
 		I.seeInSource( "meta name=\"twitter:title\" content=\"Happy life - Local WordPress Dev\"" );
 	} );
+
