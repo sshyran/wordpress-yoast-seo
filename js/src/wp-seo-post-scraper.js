@@ -500,6 +500,52 @@ setYoastComponentsI18n();
 			snippetEditorData.slug = data.slug;
 			snippetEditorData.description = data.description;
 		} );
+
+		function createWorker (workerUrl) {
+			var worker = null;
+			try {
+				worker = new Worker(workerUrl);
+			} catch (e) {
+				try {
+					var blob;
+					try {
+						blob = new Blob(["importScripts('" + workerUrl + "');"], { "type": 'application/javascript' });
+					} catch (e1) {
+						var blobBuilder = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)();
+						blobBuilder.append("importScripts('" + workerUrl + "');");
+						blob = blobBuilder.getBlob('application/javascript');
+					}
+					var url = window.URL || window.webkitURL;
+					var blobUrl = url.createObjectURL(blob);
+					worker = new Worker(blobUrl);
+				} catch (e2) {
+					//if it still fails, there is nothing much we can do
+				}
+			}
+			return worker;
+		}
+
+		if ( window.Worker ) {
+			// var myWorker = new Worker( "http://local.wordpress.test/wp-content/plugins/wordpress-seo/js/src/wp-seo-analysis-worker.js" );
+			var myWorker = createWorker( "http://localhost:8080/wp-seo-analysis-worker-761.js" );
+
+			console.log( myWorker );
+			myWorker.onmessage = function( message ) {
+				console.log( message.data );
+			};
+
+			myWorker.postMessage( {
+				command: "initialize",
+				payload: {
+					locale: wpseoPostScraperL10n.contentLocale,
+					contentAnalysisActive: isContentAnalysisActive(),
+					keywordAnalysisActive: isKeywordAnalysisActive(),
+					hasSnippetPreview: false,
+				},
+			} );
+
+			myWorker.postMessage( [ "This is the message!", "Another one" ] );
+		}
 	}
 
 	jQuery( document ).ready( initializePostAnalysis );

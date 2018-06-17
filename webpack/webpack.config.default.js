@@ -43,7 +43,6 @@ wpDependencies.forEach( wpDependency => {
 	);
 } );
 
-
 const defaultWebpackConfig = {
 	devtool: "cheap-module-eval-source-map",
 	entry: paths.entry,
@@ -105,6 +104,9 @@ const defaultWebpackConfig = {
 		new webpack.optimize.CommonsChunkPlugin( {
 			name: "vendor",
 			filename: "commons-" + pluginVersionSlug + ".min.js",
+
+			// Exclude the worker from the commons, because it is loaded completely separately.
+			chunks: Object.keys( paths.entry ).filter( entry => entry !== "wp-seo-analysis-worker" ),
 		} ),
 	],
 };
